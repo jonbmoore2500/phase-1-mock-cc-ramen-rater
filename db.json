@@ -5,8 +5,8 @@
       "name": "Shoyu Ramen",
       "restaurant": "Nonono",
       "image": "./assets/ramen/shoyu.jpg",
-      "rating": 7,
-      "comment": "Delish. Can't go wrong with a classic!"
+      "rating": "8",
+      "comment": "this is dope as hell"
     },
     {
       "id": 2,
@@ -21,16 +21,16 @@
       "name": "Nirvana Shiromaru",
       "restaurant": "Ippudo",
       "image": "./assets/ramen/nirvana.jpg",
-      "rating": "7",
-      "comment": "Do buy the hype."
+      "rating": "8",
+      "comment": "This is dope"
     },
     {
       "id": 4,
       "name": "Gyukotsu Ramen",
       "restaurant": "Za-Ya Ramen",
       "image": "./assets/ramen/gyukotsu.jpg",
-      "rating": 8,
-      "comment": "Good to the last drop."
+      "rating": "8",
+      "comment": "this ramen is dope, yo"
     },
     {
       "id": 5,

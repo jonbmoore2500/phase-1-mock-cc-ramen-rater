@@ -11,8 +11,9 @@ function createMenu() {
     fetch('http://localhost:3000/ramens')
     .then(resp => resp.json())
     .then(data => {
+        // document.getElementById('ramen-menu').innerHTML = ''
         data.forEach(ramen => {
-        processMenu(ramen)
+            processMenu(ramen)
         });
         previewRamen(idRamen)
     })
@@ -86,5 +87,17 @@ function updateRamen(e) {
         "comment": `${e.target.querySelector('#new-comment').value}`
     }
     console.log(e.target)
-    // fetch(`http://localhost:3000/ramens/${e.target}`)
+    fetch(`http://localhost:3000/ramens/${idRamen}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateRamenObj)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        // delete old card and replace with new one? or edit old card?
+        createMenu()
+    })
+
 }
