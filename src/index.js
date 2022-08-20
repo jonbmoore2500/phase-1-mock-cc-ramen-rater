@@ -8,10 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 let idRamen = 1
 const ramenData = []
 function createMenu() {
+
     fetch('http://localhost:3000/ramens')
     .then(resp => resp.json())
     .then(data => {
-        // document.getElementById('ramen-menu').innerHTML = ''
+        
         data.forEach(ramen => {
             processMenu(ramen)
         });
@@ -95,9 +96,12 @@ function updateRamen(e) {
         body: JSON.stringify(updateRamenObj)
     })
     .then(resp => resp.json())
-    .then(data => {
-        // delete old card and replace with new one? or edit old card?
-        createMenu()
-    })
+    .then(() => {
+        // () => document.location.reload(true) // an option, reloads entire page to repopulate data
+        document.getElementById('ramen-menu').innerHTML = '';
+        ramenData.slice(0, ramenData.length);
+        createMenu();
+        }
+    )
 
 }
