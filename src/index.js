@@ -2,8 +2,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     createMenu();
     addCreateBtn();
+    addUpdateBtn();
 })
 
+let idRamen = 1
 const ramenData = []
 function createMenu() {
     fetch('http://localhost:3000/ramens')
@@ -12,7 +14,7 @@ function createMenu() {
         data.forEach(ramen => {
         processMenu(ramen)
         });
-        previewRamen(1)
+        previewRamen(idRamen)
     })
 }
 
@@ -21,7 +23,8 @@ function processMenu(ramen) {
     ramenData.push(ramen)
     ramenThumbnail.innerHTML = `<img id="${ramen.id}" src="${ramen.image}">`
     ramenThumbnail.addEventListener('click', (e) => {
-        previewRamen(e.target.id);
+        idRamen = e.target.id
+        previewRamen(idRamen);
     })
     let menuCont = document.getElementById('ramen-menu')
     menuCont.appendChild(ramenThumbnail)
@@ -38,13 +41,24 @@ function previewRamen(idRam) {
 }
 
 function addCreateBtn() {
-    let form = document.getElementById('new-ramen')
-    form.addEventListener('submit', (e) => {
+    let createForm = document.getElementById('new-ramen')
+    createForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addNew(e)
-        form.reset();
+        createForm.reset();
     })
 }
+
+function addUpdateBtn() {
+    let updateForm = createForm = document.getElementById('edit-ramen')
+    updateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        updateRamen(e)
+        updateForm.reset();
+    })
+}
+
+
 
 function addNew(e) {
     let newRamenObj = {
@@ -54,7 +68,7 @@ function addNew(e) {
         "rating": `${e.target.querySelector('#new-rating').value}`,
         "comment": `${e.target.querySelector('#new-comment').value}`
     }
-    console.log(newRamenObj)
+    // console.log(newRamenObj)
     fetch('http://localhost:3000/ramens', {
         method: 'POST',
         headers: {
@@ -64,4 +78,13 @@ function addNew(e) {
     })
     .then(resp => resp.json())
     .then(data => processMenu(data))
+}
+
+function updateRamen(e) {
+    let updateRamenObj = {
+        "rating": `${e.target.querySelector('#new-rating').value}`,
+        "comment": `${e.target.querySelector('#new-comment').value}`
+    }
+    console.log(e.target)
+    // fetch(`http://localhost:3000/ramens/${e.target}`)
 }
