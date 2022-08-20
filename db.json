@@ -5,16 +5,16 @@
       "name": "Shoyu Ramen",
       "restaurant": "Nonono",
       "image": "./assets/ramen/shoyu.jpg",
-      "rating": "8",
-      "comment": "this is dope as hell"
+      "rating": "1",
+      "comment": "awful"
     },
     {
       "id": 2,
       "name": "Naruto Ramen",
       "restaurant": "Naruto",
       "image": "./assets/ramen/naruto.jpg",
-      "rating": 10,
-      "comment": "My absolute fave!"
+      "rating": "9",
+      "comment": "still my fave"
     },
     {
       "id": 3,
@@ -29,8 +29,8 @@
       "name": "Gyukotsu Ramen",
       "restaurant": "Za-Ya Ramen",
       "image": "./assets/ramen/gyukotsu.jpg",
-      "rating": "10",
-      "comment": "maxed out dope factor"
+      "rating": "5",
+      "comment": "not so dope anymore"
     },
     {
       "id": 5,
