@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createMenu();
     addCreateBtn();
     addUpdateBtn();
+    addDeleteBtn();
 })
 
 let idRamen = 1
@@ -57,7 +58,13 @@ function addUpdateBtn() {
         updateForm.reset();
     })
 }
-
+function addDeleteBtn() {
+    let deleteForm = document.getElementById('delete-ramen')
+    deleteForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        deleteRamen(e)
+    })
+}
 
 
 function addNew(e) {
@@ -68,7 +75,6 @@ function addNew(e) {
         "rating": `${e.target.querySelector('#new-rating').value}`,
         "comment": `${e.target.querySelector('#new-comment').value}`
     }
-    // console.log(newRamenObj)
     fetch('http://localhost:3000/ramens', {
         method: 'POST',
         headers: {
@@ -93,14 +99,22 @@ function updateRamen(e) {
         },
         body: JSON.stringify(updateRamenObj)
     })
-    // .then(resp => resp.json())
     .then(() => {
-        // () => document.location.reload(true) // an option, reloads entire page to repopulate data
         document.getElementById('ramen-menu').innerHTML = '';
         ramenData = [];
-        // console.log(document.getElementById('ramen-menu').innerHTML, ramenData)
         createMenu();
         }
     )
+}
 
+function deleteRamen(e) {
+    fetch(`http://localhost:3000/ramens/${idRamen}`, {
+        method: 'DELETE'
+    })
+    .then(() => console.log('Delete successful'))
+    .then(() => {
+        document.getElementById('ramen-menu').innerHTML = '';
+        ramenData = [];
+        createMenu();
+    })
 }
